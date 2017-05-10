@@ -25,7 +25,19 @@ namespace WineOutlet
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                        "~/Content/animate.css",
+                        "~/Content/css.css",
+                        "~/Content/font-awesome.min.css",
+                        "~/Content/jquery-ui.min.css",
+                        "~/Content/jquery.simpleLens.css",
+                        "~/Content/master.css",
+                        "~/Content/meanmenu.min.css",
+                        "~/Content/nivo-slider.css",
+                        "~/Content/owl.carousel.css",
+                        "~/Content/responsive.css",
+                        "~/Content/style.css",
+                        "~/Content/animate.css"));
         }
     }
 }

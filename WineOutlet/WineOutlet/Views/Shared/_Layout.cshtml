@@ -3,42 +3,665 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Wineoutlet</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
+
+    <!--google-fonts-->
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:700,400' rel='stylesheet' type='text/css' />
+    <link href='https://fonts.googleapis.com/css?family=Cabin:400,700' rel='stylesheet' type='text/css' />
+    <link href='https://fonts.googleapis.com/css?family=Yesteryear' rel='stylesheet' type='text/css' />
+
+    <!-- all css here -->
+    <!-- master CSS
+    ============================================ -->
+    <link rel="stylesheet" href="css/master.css">
+
+    <!-- modernizr js -->
+    <script src="js/modernizr-2.8.3.min.js"></script>
+    <style>
+        /*=========================
+         Icons
+        ================= */
+
+        /* footer social icons */
+        ul.social-network {
+            list-style: none;
+            display: inline;
+            margin-left: 0 !important;
+            padding: 0;
+        }
+
+            ul.social-network li {
+                display: inline;
+                margin: 0 5px;
+            }
+
+
+        /* footer social icons */
+        .social-network a.icoRss:hover {
+            background-color: #F56505;
+        }
+
+        .social-network a.icoFacebook:hover {
+            background-color: #3B5998;
+        }
+
+        .social-network a.icoTwitter:hover {
+            background-color: #33ccff;
+        }
+
+        .social-network a.icoGoogle:hover {
+            background-color: #BD3518;
+        }
+
+        .social-network a.icoVimeo:hover {
+            background-color: #0590B8;
+        }
+
+        .social-network a.icoLinkedin:hover {
+            background-color: #007bb7;
+        }
+
+            .social-network a.icoRss:hover i, .social-network a.icoFacebook:hover i, .social-network a.icoTwitter:hover i,
+            .social-network a.icoGoogle:hover i, .social-network a.icoVimeo:hover i, .social-network a.icoLinkedin:hover i {
+                color: #fff;
+            }
+
+        a.socialIcon:hover, .socialHoverClass {
+            color: #44BCDD;
+        }
+
+        .social-circle li a {
+            display: inline-block;
+            position: relative;
+            margin: 0 auto 0 auto;
+            -moz-border-radius: 50%;
+            -webkit-border-radius: 50%;
+            border-radius: 50%;
+            text-align: center;
+            width: 50px;
+            height: 50px;
+            font-size: 20px;
+        }
+
+        .social-circle li i {
+            margin: 0;
+            line-height: 50px;
+            text-align: center;
+        }
+
+        .social-circle li a:hover i, .triggeredHover {
+            -moz-transform: rotate(360deg);
+            -webkit-transform: rotate(360deg);
+            -ms--transform: rotate(360deg);
+            transform: rotate(360deg);
+            -webkit-transition: all 0.2s;
+            -moz-transition: all 0.2s;
+            -o-transition: all 0.2s;
+            -ms-transition: all 0.2s;
+            transition: all 0.2s;
+        }
+
+        .social-circle i {
+            color: #fff;
+            -webkit-transition: all 0.8s;
+            -moz-transition: all 0.8s;
+            -o-transition: all 0.8s;
+            -ms-transition: all 0.8s;
+            transition: all 0.8s;
+        }
+
+        .pinterest {
+        }
+    </style><style>
+
+
+/*=========================
+  Icons
+ ================= */
+
+/* footer social icons */
+ul.social-network {
+	list-style: none;
+	display: inline;
+	margin-left:0 !important;
+	padding: 0;
+}
+ul.social-network li {
+	display: inline;
+	margin: 0 5px;
+}
+
+
+/* footer social icons */
+.social-network a.icoRss:hover {
+	background-color: #F56505;
+}
+.social-network a.icoFacebook:hover {
+	background-color:#3B5998;
+}
+.social-network a.icoTwitter:hover {
+	background-color:#33ccff;
+}
+.social-network a.icoGoogle:hover {
+	background-color:#BD3518;
+}
+.social-network a.icoVimeo:hover {
+	background-color:#0590B8;
+}
+.social-network a.icoLinkedin:hover {
+	background-color:#007bb7;
+}
+.social-network a.icoRss:hover i, .social-network a.icoFacebook:hover i, .social-network a.icoTwitter:hover i,
+.social-network a.icoGoogle:hover i, .social-network a.icoVimeo:hover i, .social-network a.icoLinkedin:hover i {
+	color:#fff;
+}
+a.socialIcon:hover, .socialHoverClass {
+	color:#44BCDD;
+}
+
+.social-circle li a {
+	display:inline-block;
+	position:relative;
+	margin:0 auto 0 auto;
+	-moz-border-radius:50%;
+	-webkit-border-radius:50%;
+	border-radius:50%;
+	text-align:center;
+	width: 50px;
+	height: 50px;
+	font-size:20px;
+}
+.social-circle li i {
+	margin:0;
+	line-height:50px;
+	text-align: center;
+}
+
+.social-circle li a:hover i, .triggeredHover {
+	-moz-transform: rotate(360deg);
+	-webkit-transform: rotate(360deg);
+	-ms--transform: rotate(360deg);
+	transform: rotate(360deg);
+	-webkit-transition: all 0.2s;
+	-moz-transition: all 0.2s;
+	-o-transition: all 0.2s;
+	-ms-transition: all 0.2s;
+	transition: all 0.2s;
+}
+.social-circle i {
+	color: #fff;
+	-webkit-transition: all 0.8s;
+	-moz-transition: all 0.8s;
+	-o-transition: all 0.8s;
+	-ms-transition: all 0.8s;
+	transition: all 0.8s;
+}
+.pinterest {
+
+}
+
+
+	</style>
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+    <div class="home-page-1">
+        <header>
+            <!-- header-top start -->
+            <div class="header-top-area">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <!-- header-top-left start -->
+                            <div class="header-top-left res1">
+                                <div class="top-menu lang-select floatleft">
+                                    <ul>
+                                        <li>
+                                            <a href="#">English <i class="fa fa-angle-down"></i></a>
+                                            <ul class="last-change">
+                                                <li><a href="#">Bangla</a></li>
+                                                <li><a href="#">Arabi</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="top-menu money-select floatleft">
+                                    <ul>
+                                        <li>
+                                            <a href="#">USD <i class="fa fa-angle-down"></i></a>
+                                            <ul>
+                                                <li><a href="#">TKA</a></li>
+                                                <li><a href="#">EUR</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="phone-number floatleft"><i class="fa fa-phone"></i>Phone : 123 456 789</div>
+                            </div>
+                            <!-- header-top-left end -->
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3">
+                            <ul class="social-network social-circle">
+
+                                <li><a href="/WineOutletNJ" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="/WineOutletNJ" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                                <!--<li><a href="#" class="icoGoogle" title="Google +"><i class="fa fa-google-plus"></i></a></li>-->
+                                <li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+                                <li class="pinterest"><a href="#"><i class="fa fa-pinterest-p fa-x"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3">
+                            <!-- header-top-right start -->
+                            <div class="header-top-right">
+
+                                <div class="top-menu floatright">
+                                    <ul>
+                                        <li>
+                                            <a href="#">Account <i class="fa fa-angle-down"></i></a>
+                                            <ul>
+                                                <li><a href="#">My Account</a></li>
+                                                <li><a href="#">My Wishlist</a></li>
+                                                <li><a href="#">My Cart</a></li>
+                                                <li><a href="#">Checkout</a></li>
+                                                <li><a href="#">Testimonial</a></li>
+                                                <li><a href="#">Our Blog</a></li>
+                                                <li><a href="#">Log In</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- header-top-right end -->
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
+            <!-- header-top end -->
+            <!-- header-bottom start -->
+            <div class="header-bottom-area">
+                <div class="container">
+                    <div class="header-bottom-inner">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-3 col-sm-12">
+                                <!--logo start-->
+                                <div class="logo r1">
+                                    <a href="index.html">
+                                        <img src="images/logo.png" alt style="height:57px;width:180px;" />
+                                    </a>
+                                </div>
+                                <!--logo end-->
+                            </div>
+                            <div class="col-lg-7 col-md-7 col-sm-12">
+                                <div class="mobile-menu-area">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="mobile-menu">
+                                                <nav id="dropdown">
+                                                    <ul class="menu">
+                                                        <li>
+                                                            <a class="active" href="index.html">home</a>
+                                                            <ul class="sub-menu">
+                                                                <li><a href="index.html" class="mega-menu-title">Home Version One</a></li>
+                                                                <li><a href="index-2.html">Home Version Two</a></li>
+                                                                <li><a href="index-3.html">Home Version Three</a></li>
+                                                                <li><a href="index-4.html">Home Version Four</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a href="shop.html">Wine </a>
+                                                            <ul class="mega-menu mega-menu-two">
+                                                                <li>
+                                                                    <a href="shop.html" class="mega-menu-title">Dress</a>
+                                                                    <a href="shop.html">cocktail</a>
+                                                                    <a href="shop.html">day</a>
+                                                                    <a href="shop.html">eventing</a>
+                                                                    <a href="shop.html">sundress</a>
+                                                                    <a href="shop.html">sweater</a>
+                                                                    <a href="shop.html">belts</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="shop.html" class="mega-menu-title">Accessories</a>
+                                                                    <a href="shop.html">Hair Accessories</a>
+                                                                    <a href="shop.html">Lifestyle</a>
+                                                                    <a href="shop.html">Hats and Gloves</a>
+                                                                    <a href="shop.html">Bras</a>
+                                                                    <a href="shop.html">Scarves</a>
+                                                                    <a href="shop.html">Small Leathers</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="shop.html" class="mega-menu-title">Tops</a>
+                                                                    <a href="shop.html">cocktail</a>
+                                                                    <a href="shop.html">day</a>
+                                                                    <a href="shop.html">eventing</a>
+                                                                    <a href="shop.html">sundress</a>
+                                                                    <a href="shop.html">sweater</a>
+                                                                    <a href="shop.html">belts</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="shop.html" class="mega-menu-title">Handbags</a>
+                                                                    <a href="shop.html">Hair Accessories</a>
+                                                                    <a href="shop.html">Lifestyle</a>
+                                                                    <a href="shop.html">Hats and Gloves</a>
+                                                                    <a href="shop.html">Bras</a>
+                                                                    <a href="shop.html">Scarves</a>
+                                                                    <a href="shop.html">Small Leathers</a>
+                                                                </li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a href="shop.html">Deal Of The Day</a>
+                                                            <ul class="mega-menu mega-menu-three">
+                                                                <li>
+                                                                    <a href="shop.html" class="mega-menu-title">Dress</a>
+                                                                    <a href="shop.html">cocktail</a>
+                                                                    <a href="shop.html">day</a>
+                                                                    <a href="shop.html">eventing</a>
+                                                                    <a href="shop.html">sundress</a>
+                                                                    <a href="shop.html">sweater</a>
+                                                                    <a href="shop.html">belts</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="shop.html" class="mega-menu-title">Accessories</a>
+                                                                    <a href="shop.html">Hair Accessories</a>
+                                                                    <a href="shop.html">Lifestyle</a>
+                                                                    <a href="shop.html">Hats and Gloves</a>
+                                                                    <a href="shop.html">Bras</a>
+                                                                    <a href="shop.html">Scarves</a>
+                                                                    <a href="shop.html">Small Leathers</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="shop.html" class="mega-menu-title">Tops</a>
+                                                                    <a href="shop.html">cocktail</a>
+                                                                    <a href="shop.html">day</a>
+                                                                    <a href="shop.html">eventing</a>
+                                                                    <a href="shop.html">sundress</a>
+                                                                    <a href="shop.html">sweater</a>
+                                                                    <a href="shop.html">belts</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="shop.html" class="mega-menu-title">Handbags</a>
+                                                                    <a href="shop.html">Hair Accessories</a>
+                                                                    <a href="shop.html">Lifestyle</a>
+                                                                    <a href="shop.html">Hats and Gloves</a>
+                                                                    <a href="shop.html">Bras</a>
+                                                                    <a href="shop.html">Scarves</a>
+                                                                    <a href="shop.html">Small Leathers</a>
+                                                                </li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a href="shop.html">About Us</a>
+                                                            <ul class="sub-menu">
+                                                                <li><a href="shop.html" class="mega-menu-title">Jewelry</a></li>
+                                                                <li><a href="shop.html">Boots</a></li>
+                                                                <li><a href="shop.html">Slippers and Clogs</a></li>
+                                                                <li><a href="shop.html">Flats</a></li>
+                                                                <li><a href="shop.html">Sneakers</a></li>
+                                                                <li><a href="shop.html">Wedges and Heels</a></li>
+                                                                <li><a href="shop.html">Sandals and Flip Flops</a></li>
+                                                                <li><a href="shop.html">Submenu item</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a href="shop.html">wine pairing</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#">pages</a>
+                                                            <ul class="sub-menu">
+                                                                <li><a href="blog.html" class="mega-menu-title">Blog</a></li>
+                                                                <li><a href="blog-details.html">blog details</a></li>
+                                                                <li><a href="checkout.html">checkout</a></li>
+                                                                <li><a href="contact.html">contact</a></li>
+                                                                <li><a href="login.html">login</a></li>
+                                                                <li><a href="my-account.html">my account</a></li>
+                                                                <li><a href="shop.html">shop</a></li>
+                                                                <li><a href="shop-list.html">shop list</a></li>
+                                                                <li><a href="shopping-cart.html">shopping cart</a></li>
+                                                                <li><a href="single-product.html">single product</a></li>
+                                                                <li><a href="wishlist.html"> wish list</a></li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </nav>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--mainmenu start-->
+                                <div class="mainmenu">
+                                    <nav>
+                                        <ul>
+                                            <li>
+                                                <a class="active" href="index.html">home</a>
+                                                <ul class="sub-menu">
+                                                    <li><a href="index.html" class="mega-menu-title">Home Version One</a></li>
+                                                    <li><a href="index-2.html">Home Version Two</a></li>
+                                                    <li><a href="index-3.html">Home Version Three</a></li>
+                                                    <li><a href="index-4.html">Home Version Four</a></li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html">Wine </a>
+                                                <ul class="mega-menu mega-menu-two">
+                                                    <li>
+                                                        <a href="shop.html" class="mega-menu-title">Dress</a>
+                                                        <a href="shop.html">cocktail</a>
+                                                        <a href="shop.html">day</a>
+                                                        <a href="shop.html">eventing</a>
+                                                        <a href="shop.html">sundress</a>
+                                                        <a href="shop.html">sweater</a>
+                                                        <a href="shop.html">belts</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="shop.html" class="mega-menu-title">Accessories</a>
+                                                        <a href="shop.html">Hair Accessories</a>
+                                                        <a href="shop.html">Lifestyle</a>
+                                                        <a href="shop.html">Hats and Gloves</a>
+                                                        <a href="shop.html">Bras</a>
+                                                        <a href="shop.html">Scarves</a>
+                                                        <a href="shop.html">Small Leathers</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="shop.html" class="mega-menu-title">Tops</a>
+                                                        <a href="shop.html">cocktail</a>
+                                                        <a href="shop.html">day</a>
+                                                        <a href="shop.html">eventing</a>
+                                                        <a href="shop.html">sundress</a>
+                                                        <a href="shop.html">sweater</a>
+                                                        <a href="shop.html">belts</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="shop.html" class="mega-menu-title">Handbags</a>
+                                                        <a href="shop.html">Hair Accessories</a>
+                                                        <a href="shop.html">Lifestyle</a>
+                                                        <a href="shop.html">Hats and Gloves</a>
+                                                        <a href="shop.html">Bras</a>
+                                                        <a href="shop.html">Scarves</a>
+                                                        <a href="shop.html">Small Leathers</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html">Deal Of The Day</a>
+                                                <ul class="mega-menu mega-menu-three">
+                                                    <li>
+                                                        <a href="shop.html" class="mega-menu-title">Dress</a>
+                                                        <a href="shop.html">cocktail</a>
+                                                        <a href="shop.html">day</a>
+                                                        <a href="shop.html">eventing</a>
+                                                        <a href="shop.html">sundress</a>
+                                                        <a href="shop.html">sweater</a>
+                                                        <a href="shop.html">belts</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="shop.html" class="mega-menu-title">Accessories</a>
+                                                        <a href="shop.html">Hair Accessories</a>
+                                                        <a href="shop.html">Lifestyle</a>
+                                                        <a href="shop.html">Hats and Gloves</a>
+                                                        <a href="shop.html">Bras</a>
+                                                        <a href="shop.html">Scarves</a>
+                                                        <a href="shop.html">Small Leathers</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="shop.html" class="mega-menu-title">Tops</a>
+                                                        <a href="shop.html">cocktail</a>
+                                                        <a href="shop.html">day</a>
+                                                        <a href="shop.html">eventing</a>
+                                                        <a href="shop.html">sundress</a>
+                                                        <a href="shop.html">sweater</a>
+                                                        <a href="shop.html">belts</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="shop.html" class="mega-menu-title">Handbags</a>
+                                                        <a href="shop.html">Hair Accessories</a>
+                                                        <a href="shop.html">Lifestyle</a>
+                                                        <a href="shop.html">Hats and Gloves</a>
+                                                        <a href="shop.html">Bras</a>
+                                                        <a href="shop.html">Scarves</a>
+                                                        <a href="shop.html">Small Leathers</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html">About Us</a>
+                                                <ul class="sub-menu">
+                                                    <li><a href="shop.html" class="mega-menu-title">Jewelry</a></li>
+                                                    <li><a href="shop.html">Boots</a></li>
+                                                    <li><a href="shop.html">Slippers and Clogs</a></li>
+                                                    <li><a href="shop.html">Flats</a></li>
+                                                    <li><a href="shop.html">Sneakers</a></li>
+                                                    <li><a href="shop.html">Wedges and Heels</a></li>
+                                                    <li><a href="shop.html">Sandals and Flip Flops</a></li>
+                                                    <li><a href="shop.html">Submenu item</a></li>
+                                                </ul>
+                                            </li>
+                                            <!--<li><a href="shop.html">wine pairing</a></li>
+                                            <li><a href="#">pages</a>
+                                                <ul class="sub-menu">
+                                                    <li><a href="blog.html" class="mega-menu-title">Blog</a></li>
+                                                    <li><a href="blog-details.html">blog details</a></li>
+                                                    <li><a href="checkout.html">checkout</a></li>
+                                                    <li><a href="contact.html">contact</a></li>
+                                                    <li><a href="login.html">login</a></li>
+                                                    <li><a href="my-account.html">my account</a></li>
+                                                    <li><a href="shop.html">shop</a></li>
+                                                    <li><a href="shop-list.html">shop list</a></li>
+                                                    <li><a href="shopping-cart.html">shopping cart</a></li>
+                                                    <li><a href="single-product.html">single product</a></li>
+                                                    <li><a href="wishlist.html"> wish list</a></li>
+                                                </ul>
+                                            </li>-->
+                                        </ul>
+                                    </nav>
+                                </div>
+                                <!--mainmenu end-->
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-12">
+                                <div class="cart-and-search floatright">
+                                    <!--search-box-start-->
+                                    <div class="search-box floatleft">
+                                        <form action="#">
+                                            <input type="text" placeholder="Enter keywords to search... " />
+                                            <button><i class="fa fa-search"></i></button>
+                                        </form>
+                                    </div>
+                                    <!--search-box-end-->
+                                    <!--total-cart-start-->
+                                    <div class="total-cart floatleft">
+                                        <a href="#">
+                                            <i class="fa fa-shopping-cart"></i>
+                                            <span>2</span>
+                                        </a>
+                                        <div class="mini-cart-dropdown">
+                                            <div class="single-mini-cart">
+                                                <div class="mini-cart-thumb">
+                                                    <a href="#"><img src="images/wine-3_2.jpg" alt="" /></a>
+                                                </div>
+                                                <div class="mini-cart-content">
+                                                    <a href="#" class="product-name">Donec ac tempus</a>
+                                                    <span class="mini-cart-quantity">1</span>
+                                                    <span>x</span>
+                                                    <span class="mini-cart-price">$220</span>
+                                                </div>
+                                                <div class="cart-item-remove-edit">
+                                                    <a href="#" class="edit-item"></a>
+                                                    <a href="#" class="remove-item"></a>
+                                                </div>
+                                            </div>
+                                            <div class="single-mini-cart">
+                                                <div class="mini-cart-thumb">
+                                                    <a href="#"><img src="images/spcial-wine-3.jpg" alt="" /></a>
+                                                </div>
+                                                <div class="mini-cart-content">
+                                                    <a href="#" class="product-name">Donec ac tempus</a>
+                                                    <span class="mini-cart-quantity">1</span>
+                                                    <span>x</span>
+                                                    <span class="mini-cart-price">$220</span>
+                                                </div>
+                                                <div class="cart-item-remove-edit">
+                                                    <a href="#" class="edit-item"></a>
+                                                    <a href="#" class="remove-item"></a>
+                                                </div>
+                                            </div>
+                                            <div class="single-mini-cart">
+                                                <div class="mini-cart-subtotal">
+                                                    Subtotal: <span class="price">$1,044.00</span>
+                                                </div>
+                                            </div>
+                                            <div class="mini-cart-action">
+                                                <button class="floatleft">view cart <i class="fa fa-angle-right"></i></button>
+                                                <button class="floatright">checkout <i class="fa fa-angle-right"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--total-cart-end-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    <div class="container body-content">
+            <!-- header-bottom end -->
+        </header>
+
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+
+
+
+
+
+
     </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    <script src="js/jquery-1.12.0.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- nivo slider js -->
+    <script src="js/jquery.nivo.slider.pack.js"></script>
+    <!-- jquery.countdown js -->
+    <script src="js/jquery.countdown.min.js"></script>
+    <!-- owl.carousel js -->
+    <script src="js/owl.carousel.min.js"></script>
+    <!-- Img Zoom js -->
+    <script src="js/jquery.simpleLens.min.js"></script>
+    <!-- meanmenu js -->
+    <script src="js/jquery.meanmenu.js"></script>
+    <!-- jquery-ui js -->
+    <script src="js/jquery-ui.min.js"></script>
+    <!-- wow js -->
+    <script src="js/wow.min.js"></script>
+    <!-- plugins js -->
+    <script src="js/plugins.js"></script>
+    <!-- main js -->
+    <script src="js/main.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>
