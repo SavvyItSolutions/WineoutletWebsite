@@ -220,7 +220,7 @@ a.socialIcon:hover, .socialHoverClass {
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <!-- header-top-left start -->
                             <div class="header-top-left res1">
-                                <div class="top-menu lang-select floatleft">
+                                @*<div class="top-menu lang-select floatleft">
                                     <ul>
                                         <li>
                                             <a href="#">English <i class="fa fa-angle-down"></i></a>
@@ -230,8 +230,8 @@ a.socialIcon:hover, .socialHoverClass {
                                             </ul>
                                         </li>
                                     </ul>
-                                </div>
-                                <div class="top-menu money-select floatleft">
+                                </div>*@
+                                @*<div class="top-menu money-select floatleft">
                                     <ul>
                                         <li>
                                             <a href="#">USD <i class="fa fa-angle-down"></i></a>
@@ -241,7 +241,7 @@ a.socialIcon:hover, .socialHoverClass {
                                             </ul>
                                         </li>
                                     </ul>
-                                </div>
+                                </div>*@
                                 <div class="phone-number floatleft"><i class="fa fa-phone"></i>Phone : 123 456 789</div>
                             </div>
                             <!-- header-top-left end -->
@@ -251,7 +251,7 @@ a.socialIcon:hover, .socialHoverClass {
 
                                 <li><a href="/WineOutletNJ" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
                                 <li><a href="/WineOutletNJ" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a></li>
-                                <!--<li><a href="#" class="icoGoogle" title="Google +"><i class="fa fa-google-plus"></i></a></li>-->
+                                @*<li><a href="#" class="icoGoogle" title="Google +"><i class="fa fa-google-plus"></i></a></li>*@
                                 <li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
                                 <li class="pinterest"><a href="#"><i class="fa fa-pinterest-p fa-x"></i></a></li>
                             </ul>
@@ -271,7 +271,7 @@ a.socialIcon:hover, .socialHoverClass {
                                                 <li><a href="#">Checkout</a></li>
                                                 <li><a href="#">Testimonial</a></li>
                                                 <li><a href="#">Our Blog</a></li>
-                                                <li><a href="#">Log In</a></li>
+                                                <li>@Html.Partial("_LoginPartial")</li>
                                             </ul>
                                         </li>
                                     </ul>
@@ -291,8 +291,8 @@ a.socialIcon:hover, .socialHoverClass {
                             <div class="col-lg-3 col-md-3 col-sm-12">
                                 <!--logo start-->
                                 <div class="logo r1">
-                                    <a href="index.html">
-                                        <img src="images/logo.png" alt style="height:57px;width:180px;" />
+                                    <a href="#">
+                                        <img src="images/logo.png"  style="height:57px;width:180px;" />
                                     </a>
                                 </div>
                                 <!--logo end-->
