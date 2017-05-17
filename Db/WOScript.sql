@@ -90,3 +90,42 @@ PRIMARY KEY CLUSTERED
 insert into WineType select 'Sparkling'
 
 select * from WineType
+
+
+create table Samplewines(
+	[DB_key] [int] IDENTITY(1,1) NOT NULL,
+	[Sku] [varchar] (128) not null,
+	[WineName] [varchar] (128),
+	[Vintage] int ,
+	[Country] [varchar] (128),
+	[Region] [varchar] (128) ,
+	[SubRegion] [varchar] (128) ,
+	[GrapeType] [varchar] (128) ,
+	[WineType][varchar] (128)
+PRIMARY KEY CLUSTERED 
+(
+	[db_key] ASC
+))
+
+select * from Samplewines
+
+insert into Samplewines values ('sku24474','Frescobaldi Tenuta di Castiglioni','2013','Italy','Tuscany','Chianti','MerlotSangiovese','Still wine')
+
+CREATE PROCEDURE [dbo].[InsertSampleData](
+	@Sku [varchar] (128) ,
+	@WineName [varchar] (128),
+	@Vintage int ,
+	@Country [varchar] (128),
+	@Region [varchar] (128) ,
+	@SubRegion [varchar] (128) ,
+	@GrapeType [varchar] (128) ,
+	@WineType [varchar] (128)
+	)
+AS  
+Begin
+insert into Samplewines(Sku,WineName,Vintage,Country,Region,SubRegion,GrapeType,WineType) values(@Sku,@WineName,@Vintage,@Country,@Region,@SubRegion,@GrapeType,@WineType)
+end
+
+Exec InsertSampleData 'sku24474','Frescobaldi Tenuta di Castiglioni','2013','Italy','Tuscany','Chianti','MerlotSangiovese','Still wine'
+
+Alter table Samplewines add Typeof varchar(32)

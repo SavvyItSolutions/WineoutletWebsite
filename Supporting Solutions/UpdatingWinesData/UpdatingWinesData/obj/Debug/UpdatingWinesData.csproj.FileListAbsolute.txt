@@ -1,0 +1,9 @@
+c:\users\savvyit\documents\visual studio 2017\Projects\UpdatingWinesData\UpdatingWinesData\obj\Debug\UpdatingWinesData.csprojResolveAssemblyReference.cache
+c:\users\savvyit\documents\visual studio 2017\Projects\UpdatingWinesData\UpdatingWinesData\bin\Debug\UpdatingWinesData.exe.config
+c:\users\savvyit\documents\visual studio 2017\Projects\UpdatingWinesData\UpdatingWinesData\bin\Debug\UpdatingWinesData.exe
+c:\users\savvyit\documents\visual studio 2017\Projects\UpdatingWinesData\UpdatingWinesData\bin\Debug\UpdatingWinesData.pdb
+c:\users\savvyit\documents\visual studio 2017\Projects\UpdatingWinesData\UpdatingWinesData\bin\Debug\HtmlAgilityPack.dll
+c:\users\savvyit\documents\visual studio 2017\Projects\UpdatingWinesData\UpdatingWinesData\bin\Debug\HtmlAgilityPack.pdb
+c:\users\savvyit\documents\visual studio 2017\Projects\UpdatingWinesData\UpdatingWinesData\bin\Debug\HtmlAgilityPack.xml
+c:\users\savvyit\documents\visual studio 2017\Projects\UpdatingWinesData\UpdatingWinesData\obj\Debug\UpdatingWinesData.exe
+c:\users\savvyit\documents\visual studio 2017\Projects\UpdatingWinesData\UpdatingWinesData\obj\Debug\UpdatingWinesData.pdb
