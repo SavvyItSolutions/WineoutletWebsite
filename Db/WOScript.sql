@@ -126,6 +126,15 @@ Begin
 insert into Samplewines(Sku,WineName,Vintage,Country,Region,SubRegion,GrapeType,WineType) values(@Sku,@WineName,@Vintage,@Country,@Region,@SubRegion,@GrapeType,@WineType)
 end
 
-Exec InsertSampleData 'sku24474','Frescobaldi Tenuta di Castiglioni','2013','Italy','Tuscany','Chianti','MerlotSangiovese','Still wine'
+Exec InsertSampleData 'sku24474','Frescobaldi Tenuta di Castiglioni','2013','Italy','Tuscany',null,'MerlotSangiovese','Still wine'
 
-Alter table Samplewines add Typeof varchar(32)
+Alter table Samplewines add Lastupdated DateTime
+
+select * from Samplewines where Vintage='2013'
+
+truncate table Samplewines
+
+
+
+
+

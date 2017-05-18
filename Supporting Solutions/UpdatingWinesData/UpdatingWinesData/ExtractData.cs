@@ -10,6 +10,7 @@ using System.Data;
 using System.Text.RegularExpressions;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.Xml;
 
 namespace UpdatingWinesData
 {
@@ -53,38 +54,28 @@ namespace UpdatingWinesData
             StringBuilder pureText = new StringBuilder();
             HtmlDocument doc = new HtmlDocument();
             doc.LoadHtml(str);
-            string Country = null;
-            string Region = null;
-            string SubRegion = null;
-            string GrapeType = null;
-            string Type = null;
-            HtmlNodeCollection mainImg = doc.DocumentNode.SelectNodes("//*[@id='loadarea']/img"); ////*[@id="""loadarea"""]/img
+            WineDetails _wdobj = new WineDetails();
+            List<WineDetails> lstWine = new List<WineDetails>();
 
-            //string imageURL = "";
-            //foreach (HtmlAttribute htmlAttr in mainImg.FirstOrDefault().Attributes)
-            //{
-            //    if (htmlAttr.Name == "src")
-            //        imageURL = htmlAttr.Value;
-            //}
             string skuid = "";
             try
             {
                 HtmlNodeCollection sku111 = doc.DocumentNode.SelectNodes("//*[@id='bmg_itemdetail_sku']");
                 skuid = sku111[0].InnerText;
-                skuid = skuid.Replace("Sku: ","");
+                skuid = skuid.Replace("Sku: ", "");
 
             }
             catch (Exception ex)
             {
                 Console.Write(ex.Message);
             }
-            string Vintag="";
+            string Vintag = "";
             try
             {
                 HtmlNodeCollection vin = doc.DocumentNode.SelectNodes("//*[@id='bmg_itemdetail_vintage']");
                 Vintag = vin[0].InnerText;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.Write(e.Message);
             }
@@ -144,21 +135,67 @@ namespace UpdatingWinesData
 
                 string inf = des.Substring(0, des.IndexOf("<!--"));
                 desURL = inf;
+
+
                 string[] str1 = desURL.Split(';');
                 string[] str2 = null;
-                str2 = str1[5].Split(':');
-                Country=str2[1];
-                str2 = str1[6].Split(':');
-                Region = str2[1];
-                str2 = str1[7].Split(':');
-                SubRegion = str2[1];
-                str2 = str1[8].Split(':');
-                GrapeType = str2[1];
-                str2 = str1[9].Split(':');
-                Type = str2[1];
-                //string country = str2[1].Replace(" ", "");
-                Console.WriteLine(Country +"\n"+ Region + "\n"+ SubRegion + "\n"+ GrapeType+"\n"+Type);
-                
+                for (int i = 0; i < str1.Length; i++)
+                {
+                    str2 = str1[i].Split(':');
+                    if (str2[0].ToLower() == "country")
+                    {
+                        _wdobj.Country = str2[1].TrimStart();
+                    }
+                    else if (str2[0].ToLower() == "region")
+                    {
+                        _wdobj.Region = str2[1].TrimStart();
+                    }
+                    else if (str2[0].ToLower() == "sub-region")
+                    {
+                        _wdobj.SubRegion = str2[1].TrimStart();
+                    }
+                    else if (str2[0].ToLower() == "grape varietal")
+                    {
+                        _wdobj.GrapeType = str2[1].TrimStart();
+                    }
+                    else if (str2[0].ToLower() == "type")
+                    {
+                        _wdobj.WineType = str2[1].TrimStart();
+                    }
+                    //_wdobj.SubRegion = "";
+
+                }
+                _wdobj.WineName = nameURL;
+                _wdobj.Vintage = Vintag;
+                SKU = SKU.Replace("http://www.wineoutlet.com/", "");
+                SKU = SKU.Replace(".html", "");
+                _wdobj.Sku = SKU;
+                lstWine.Add(_wdobj);
+
+                XmlDocument xmlData = ConvertListDataToXml(lstWine);
+
+                string constr = ConfigurationManager.ConnectionStrings["LocalCon"].ConnectionString;
+
+                using (SqlConnection con = new SqlConnection(constr))
+                {
+                    using (SqlCommand cmd = new SqlCommand("ImportWineDetails", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.Add("@xmlDoc", SqlDbType.NVarChar).Value = xmlData.InnerXml;
+                        cmd.Connection = con;
+                        cmd.CommandTimeout = 1000;
+                        con.Open();
+                        cmd.ExecuteNonQuery();
+                        //da.SelectCommand = cmd;
+                        //da.Fill(ds);
+                        //DataRow dr = ds.Tables[0].Rows[0];
+                        //DailyStats(dr);
+                        con.Close();
+                    }
+
+                }
+
+
             }
             catch (Exception exe)
             {
@@ -166,181 +203,34 @@ namespace UpdatingWinesData
                 Console.WriteLine(exe.Message);
             }
 
-            string priceURL = "";
-            try
-            {
-                //HtmlNodeCollection regPrice = doc.DocumentNode.SelectNodes("//*[@id='bmg_itemdetail_item_price']/table/tbody/tr/td[1]/span[1]"); 
-                string priceHTML = doc.DocumentNode.SelectNodes("//*[@id='bmg_itemdetail_item_price']/table")[0].InnerHtml;
-
-                //priceHTML = ""\r\n\t\t\t\t\t < tr >\r\n\t\t\t\t\t\t < td align =\"right\" width=\"100%\" valign=\"middle\">\r\n\t\t\t\t\t\t\t<span class=\"RegularPrice\">Reg.&nbsp;$49.99</span><br><span class=\"SalePrice\">On Sale $34.65</span>\r\n\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t<td align=\"right\" valign=\"middle\">\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t<a href=\"javascript:buySku('22596','',1)\"><img alt=\"Buy Alto Moncayo\" src=\"images/buy.gif\" name=\"buy\" border=\"0\">\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t</a></td>\r\n\t\t\t\t\t</tr>\r\n\t\t\t\t""
-                string startString = priceHTML.Substring(priceHTML.IndexOf("RegularPrice"));
-                string regPrice = startString.Substring(startString.IndexOf("$"), startString.IndexOf("</") - startString.IndexOf("$"));
-
-                priceURL = regPrice.Replace("$", "");
-
-            }
-            catch (Exception)
-            {
-
-                Console.WriteLine();
-            }
-
-            string saleURL = "";
-            try
-            {
-                //  HtmlNodeCollection salePrice = doc.DocumentNode.SelectNodes("//*[@id='bmg_itemdetail_item_price']/table/tbody/tr/td[1]/span[2]"); ////*[@id="bmg_itemdetail_item_price"]/table/tbody/tr/td[1]/span[2]
-                string priceHTML = doc.DocumentNode.SelectNodes("//*[@id='bmg_itemdetail_item_price']/table")[0].InnerHtml;
-
-                //priceHTML = ""\r\n\t\t\t\t\t < tr >\r\n\t\t\t\t\t\t < td align =\"right\" width=\"100%\" valign=\"middle\">\r\n\t\t\t\t\t\t\t<span class=\"RegularPrice\">Reg.&nbsp;$49.99</span><br><span class=\"SalePrice\">On Sale $34.65</span>\r\n\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t<td align=\"right\" valign=\"middle\">\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t<a href=\"javascript:buySku('22596','',1)\"><img alt=\"Buy Alto Moncayo\" src=\"images/buy.gif\" name=\"buy\" border=\"0\">\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t</a></td>\r\n\t\t\t\t\t</tr>\r\n\t\t\t\t""
-                string startString = priceHTML.Substring(priceHTML.IndexOf("SalePrice"));
-                string salePrice = startString.Substring(startString.IndexOf("$"), startString.IndexOf("</") - startString.IndexOf("$"));
-
-                saleURL = salePrice.Replace("$", "");
-
-
-            }
-            catch (Exception)
-            {
-
-                Console.WriteLine();
-
-            }
-
-            String TastingNotes = "";
-            try
-            {
-                // HtmlNodeCollection TasteDescription = doc.DocumentNode.SelectNodes("//*[@id='tastingnotes']"); //*//*[@id="bmg_itemdetail_tabs"]/div
-                String priceHTML = doc.DocumentNode.SelectNodes("//*[@id='tastingnotes']")[0].InnerText;
-
-                var rgx = new Regex(" < !--This content belongs to bevnetwork.com and WINEKING-- >");
-                TastingNotes = priceHTML.Replace("\t", "");
-                TastingNotes = TastingNotes.Replace("\r\n", "");
-                TastingNotes = TastingNotes.Replace("\n", "");
-                TastingNotes = TastingNotes.Replace(",", "");
-                TastingNotes = TastingNotes.Replace("<!--This content belongs to bevnetwork.com and WINEKING-->", "");
-                /*  var input = TastingNotes;
-                  var pattern = " <!--This content belongs to bevnetwork.com and WINEKING-->";
-              var Result = rgx.Replace(input, "", 1);*/
-
-
-
-            }
-            catch (Exception)
-            {
-
-                Console.WriteLine("message");
-            }
-
-
-            string Rating = "";
-            try
-            {
-
-                string priceHTML = doc.DocumentNode.SelectNodes("//*[@id='ratings']")[0].InnerText;
-
-                Rating = priceHTML.Replace("\t", "");
-                Rating = Rating.Replace("\r\n", "");
-                Rating = Rating.Replace("\n", "");
-                Rating = Rating.Replace(",", "");
-
-                Rating = Rating.Replace("<!--CUSTOMER-->", "");
-                Rating = Rating.Replace("<!--This content belongs to bevnetwork.com and WINEKING-->", "");
-            }
-            catch (Exception)
-            {
-
-                Console.WriteLine("message");
-            }
-
-
-
-
-
-            string MoreInfo = "";
-            try
-            {
-                //  HtmlNodeCollection MoreInfoDes = doc.DocumentNode.SelectNodes("//*[@id='moreinfo']")[0].; //*//*[@id="bmg_itemdetail_tabs"]/div
-                string priceHTML = doc.DocumentNode.SelectNodes("//*[@id='moreinfo']")[0].InnerText;
-
-
-                // MoreInfo = MoreInfoDes[0].InnerText;
-
-                //priceHTML.Replace( "/r/n,/t", String.Empty);
-                MoreInfo = priceHTML.Replace("\t", "");
-                MoreInfo = MoreInfo.Replace("\r\n", "");
-                MoreInfo = MoreInfo.Replace(",", "");
-                MoreInfo = MoreInfo.Replace("\n", "");
-                MoreInfo = MoreInfo.Replace("<!--This content belongs to bevnetwork.com and WINEKING-->", "");
-
-
-            }
-            catch (Exception)
-            {
-
-                Console.WriteLine("message");
-            }
-
-            WineDetails wine = new WineDetails()
-            {
-                sku = skuid,
-                //  wine.imageURL = imageURL;
-                // wine.ratingURL = ratingURL;
-                Information = Information,
-                nameURL = nameURL,
-                desURL = desURL,
-                priceURL = priceURL,
-                saleURL = saleURL,
-                TastingNotes = TastingNotes,
-                MoreInfo = MoreInfo
-            };
-            //  wine.Review = Review;
-            // wine.Rating = Rating;
-
-
-
-
-
-            string Rating1 = Rating;
-            SKU = SKU.Replace("http://www.wineoutlet.com/", "");
-            SKU = SKU.Replace(".html", "");
-            Country = Country.Replace(" ", "");
-            Region = Region.Replace(" ", "");
-            Type = Type.Replace(" ", "");
-            GrapeType = GrapeType.Replace(" ", "");
-            nameURL = nameURL.Replace(" ", "");
-            SubRegion = SubRegion.Replace(" ", "");
-            //string result = SKU +" , " + nameURL +","+Vintag+"," +Country+ " , " + Region + " , " + SubRegion + " , " + GrapeType + ","+Type + "\n";
-            //File.AppendAllText(@"E:\Wines.csv", result);
-
-
-
-            try
-            {
-                string connectionString = ConfigurationManager.ConnectionStrings["LocalCon"].ConnectionString;
-                SqlConnection con = new SqlConnection(connectionString);
-                SqlCommand cmd = new SqlCommand("InsertSampleData", con);
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@Sku", SKU);
-                    //cmd.Parameters.AddWithValue("@desURL", desURL);
-                    cmd.Parameters.AddWithValue("@WineName", nameURL);
-                    cmd.Parameters.AddWithValue("@Vintage", Vintag);
-                    cmd.Parameters.AddWithValue("@Country", Country);
-                    //  cmd.Parameters.AddWithValue("@TastingNotes", TastingNotes);
-                    // cmd.Parameters.AddWithValue("@MoreInfo", MoreInfo);
-                    cmd.Parameters.AddWithValue("@Region", Region);
-                    cmd.Parameters.AddWithValue("@SubRegion", SubRegion);
-                    cmd.Parameters.AddWithValue("@GrapeType", GrapeType);
-                    cmd.Parameters.AddWithValue("@WineType", Type);
-                    con.Open();
-                    cmd.ExecuteNonQuery();
-                    con.Close();
-                }
-            }
-            catch (Exception e)
-            {
-                string exe = e.Message.ToString();
-            }
+            //try
+            //{
+            //    string connectionString = ConfigurationManager.ConnectionStrings["LocalCon"].ConnectionString;
+            //    SqlConnection con = new SqlConnection(connectionString);
+            //    SqlCommand cmd = new SqlCommand("InsertSampleData", con);
+            //    {
+            //        cmd.CommandType = CommandType.StoredProcedure;
+            //        cmd.Parameters.AddWithValue("@Sku", _wdobj.Sku);
+            //        //cmd.Parameters.AddWithValue("@desURL", desURL);
+            //        cmd.Parameters.AddWithValue("@WineName", _wdobj.WineName);
+            //        cmd.Parameters.AddWithValue("@Vintage", _wdobj.Vintage);
+            //        cmd.Parameters.AddWithValue("@Country", _wdobj.Country);
+            //        //  cmd.Parameters.AddWithValue("@TastingNotes", TastingNotes);
+            //        // cmd.Parameters.AddWithValue("@MoreInfo", MoreInfo);
+            //        cmd.Parameters.AddWithValue("@Region", _wdobj.Region);
+            //        cmd.Parameters.AddWithValue("@SubRegion", _wdobj.SubRegion);
+            //        cmd.Parameters.AddWithValue("@GrapeType", _wdobj.GrapeType);
+            //        cmd.Parameters.AddWithValue("@WineType", _wdobj.WineType);
+            //        con.Open();
+            //        cmd.ExecuteNonQuery();
+            //        con.Close();
+            //        Console.WriteLine("Inserted into DB");
+            //    }
+            //}
+            //catch (Exception e)
+            //{
+            //    string exe = e.Message.ToString();
+            //}
 
             /*
             System.IO.File.WriteAllText(@"C:\Users\Savvy IT\Documents\sumanth\image.txt", imageURL);
@@ -361,6 +251,48 @@ namespace UpdatingWinesData
 
         }
 
+        private static XmlDocument ConvertListDataToXml(List<WineDetails> lwd)
+        {
+            XmlDocument xdoc = new XmlDocument();
+            XmlElement rootNode = xdoc.CreateElement("Wine");
+            for (int i = 0; i < lwd.Count; i++)
+            {
+                XmlElement childNode = xdoc.CreateElement("WineData");
+                childNode.SetAttribute("Sku", lwd[i].Sku);
+                childNode.SetAttribute("WineName", lwd[i].WineName);
+                childNode.SetAttribute("Vintage", lwd[i].Vintage);
+                childNode.SetAttribute("Country", lwd[i].Country);
+                childNode.SetAttribute("Region", lwd[i].Region);
+                childNode.SetAttribute("SubRegion", lwd[i].SubRegion);
+                childNode.SetAttribute("GrapeType", lwd[i].GrapeType);
+                childNode.SetAttribute("WineType", lwd[i].WineType);
+                rootNode.AppendChild(childNode);
+            }
+            //foreach (lwd dr in dtData.Rows)
+            //{
+            //    XmlElement childNode = xdoc.CreateElement("WineData");
+            //    childNode.SetAttribute("Sku", dr["sku"].ToString());
+            //    childNode.SetAttribute("FirstName", dr["FirstName"].ToString());
+            //    childNode.SetAttribute("LastName", dr["LastName"].ToString());
+            //    childNode.SetAttribute("PhoneNumber", dr["PhoneNumber"].ToString());
+            //    childNode.SetAttribute("Phone2", dr["Phone2"].ToString());
+            //    childNode.SetAttribute("Email", dr["Email"].ToString());
+            //    childNode.SetAttribute("Address1", dr["Address1"].ToString());
+            //    childNode.SetAttribute("Address2", dr["Address2"].ToString());
+            //    childNode.SetAttribute("City", dr["City"].ToString());
+            //    childNode.SetAttribute("State", dr["State"].ToString());
+            //    childNode.SetAttribute("CustomerType", dr["CustomerType"].ToString());
+            //    childNode.SetAttribute("CustomerAdded", dr["CustomerAdded"].ToString());
+            //    childNode.SetAttribute("CardNumber", dr["CardNumber"].ToString());
+            //    childNode.SetAttribute("Notes1", dr["Notes1"].ToString());
+            //    childNode.SetAttribute("IsUpdated", DBNull.Value.ToString());
+            //    childNode.SetAttribute("LastUpdatedOn", DBNull.Value.ToString());
+            //    rootNode.AppendChild(childNode);
+            //}
+            xdoc.AppendChild(rootNode);
+
+            return xdoc;
+        }
     }
 
 }

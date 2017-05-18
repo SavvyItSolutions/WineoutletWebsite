@@ -10,8 +10,10 @@ namespace UpdatingWinesData
     {
         static void Main(string[] args)
         {
+            //Console.WriteLine("Enter Sku");
+            //string sku=Console.ReadLine();
             ExtractData Ed = new ExtractData();
-            Ed.ReadHTML("http://www.wineoutlet.com/sku13980.html");
+            Ed.ReadHTML("http://www.wineoutlet.com/sku05093.html");
 
         }
     }

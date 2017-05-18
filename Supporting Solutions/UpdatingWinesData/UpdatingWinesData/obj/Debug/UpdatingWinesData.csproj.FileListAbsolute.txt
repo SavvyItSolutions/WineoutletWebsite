@@ -7,3 +7,12 @@ c:\users\savvyit\documents\visual studio 2017\Projects\UpdatingWinesData\Updatin
 c:\users\savvyit\documents\visual studio 2017\Projects\UpdatingWinesData\UpdatingWinesData\bin\Debug\HtmlAgilityPack.xml
 c:\users\savvyit\documents\visual studio 2017\Projects\UpdatingWinesData\UpdatingWinesData\obj\Debug\UpdatingWinesData.exe
 c:\users\savvyit\documents\visual studio 2017\Projects\UpdatingWinesData\UpdatingWinesData\obj\Debug\UpdatingWinesData.pdb
+E:\Github\WineoutletWebsite\Supporting Solutions\UpdatingWinesData\UpdatingWinesData\bin\Debug\UpdatingWinesData.exe.config
+E:\Github\WineoutletWebsite\Supporting Solutions\UpdatingWinesData\UpdatingWinesData\bin\Debug\UpdatingWinesData.exe
+E:\Github\WineoutletWebsite\Supporting Solutions\UpdatingWinesData\UpdatingWinesData\bin\Debug\UpdatingWinesData.pdb
+E:\Github\WineoutletWebsite\Supporting Solutions\UpdatingWinesData\UpdatingWinesData\bin\Debug\HtmlAgilityPack.dll
+E:\Github\WineoutletWebsite\Supporting Solutions\UpdatingWinesData\UpdatingWinesData\bin\Debug\HtmlAgilityPack.pdb
+E:\Github\WineoutletWebsite\Supporting Solutions\UpdatingWinesData\UpdatingWinesData\bin\Debug\HtmlAgilityPack.xml
+E:\Github\WineoutletWebsite\Supporting Solutions\UpdatingWinesData\UpdatingWinesData\obj\Debug\UpdatingWinesData.csprojResolveAssemblyReference.cache
+E:\Github\WineoutletWebsite\Supporting Solutions\UpdatingWinesData\UpdatingWinesData\obj\Debug\UpdatingWinesData.exe
+E:\Github\WineoutletWebsite\Supporting Solutions\UpdatingWinesData\UpdatingWinesData\obj\Debug\UpdatingWinesData.pdb
