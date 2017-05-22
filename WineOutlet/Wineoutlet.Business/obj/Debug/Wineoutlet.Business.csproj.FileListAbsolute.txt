@@ -1,0 +1,10 @@
+E:\Github\WineoutletWebsite\WineOutlet\Wineoutlet.Business\bin\Debug\Wineoutlet.Business.dll
+E:\Github\WineoutletWebsite\WineOutlet\Wineoutlet.Business\bin\Debug\Wineoutlet.Business.pdb
+E:\Github\WineoutletWebsite\WineOutlet\Wineoutlet.Business\bin\Debug\Wineoutlet.DataAccess.dll
+E:\Github\WineoutletWebsite\WineOutlet\Wineoutlet.Business\bin\Debug\Wineoutlet.Models.dll
+E:\Github\WineoutletWebsite\WineOutlet\Wineoutlet.Business\bin\Debug\Wineoutlet.DataAccess.pdb
+E:\Github\WineoutletWebsite\WineOutlet\Wineoutlet.Business\bin\Debug\Wineoutlet.DataAccess.dll.config
+E:\Github\WineoutletWebsite\WineOutlet\Wineoutlet.Business\bin\Debug\Wineoutlet.Models.pdb
+E:\Github\WineoutletWebsite\WineOutlet\Wineoutlet.Business\obj\Debug\Wineoutlet.Business.csprojResolveAssemblyReference.cache
+E:\Github\WineoutletWebsite\WineOutlet\Wineoutlet.Business\obj\Debug\Wineoutlet.Business.dll
+E:\Github\WineoutletWebsite\WineOutlet\Wineoutlet.Business\obj\Debug\Wineoutlet.Business.pdb

@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Wineoutlet" Class="WineOutletDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=SAVVY-LOKESH\SQLEXPRESS;Initial Catalog=Wineoutlet;Integrated Security=True" SettingsObjectName="Wineoutlet.DataAccess.Properties.Settings" SettingsPropertyName="WineoutletConnectionString" Provider="System.Data.SqlClient" />
+  <Function Name="dbo.GetItemDetails" Method="GetItemDetails">
+    <Parameter Name="Sku" Parameter="sku" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetItemDetailsResult">
+      <Column Name="Sku" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Vintage" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CountryName" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
+      <Column Name="RegionName" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
+      <Column Name="SubRegionName" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
+      <Column Name="GrapeTypeName" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
+      <Column Name="WineTypeName" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+</Database>

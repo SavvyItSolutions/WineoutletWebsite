@@ -169,6 +169,7 @@ namespace UpdatingWinesData
                 _wdobj.Vintage = Vintag;
                 SKU = SKU.Replace("http://www.wineoutlet.com/", "");
                 SKU = SKU.Replace(".html", "");
+                SKU = SKU.Replace("sku", "");
                 _wdobj.Sku = SKU;
                 lstWine.Add(_wdobj);
 
