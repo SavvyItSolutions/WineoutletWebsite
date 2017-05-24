@@ -9,6 +9,6 @@ namespace Wineoutlet.Business
 {
     public interface IItemService
     {
-        ItemDetailsResponse GetItemList(int sku); 
+        ItemDetailsResponse GetItemDetails(int sku); 
     }
 }

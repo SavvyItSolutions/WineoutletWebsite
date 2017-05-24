@@ -20,11 +20,11 @@ namespace WineOutlet.Controllers
             return "Lokesh";
         }
         [HttpGet]
-        public ItemDetailsResponse GetItemList(int objectId)
+        public ItemDetailsResponse GetItemDetails(int objectId)
         {
             ItemDetailsResponse resp = new ItemDetailsResponse();
             IItemService itemService = new ItemService();
-            resp = itemService.GetItemList(objectId);
+            resp = itemService.GetItemDetails(objectId);
             return resp;
         }
     }

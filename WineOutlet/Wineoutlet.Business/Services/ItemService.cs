@@ -10,10 +10,7 @@ namespace Wineoutlet.Business
 {
     public class ItemService : IItemService
     {
-     
-           
-      
-        public ItemDetailsResponse GetItemList(int sku)
+        public ItemDetailsResponse GetItemDetails(int sku)
         {
             ItemDetailsResponse idr = new ItemDetailsResponse();
             List<ItemDetails> itemList = new List<ItemDetails>();
