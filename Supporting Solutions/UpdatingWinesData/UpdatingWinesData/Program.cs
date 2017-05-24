@@ -103,7 +103,7 @@ namespace UpdatingWinesData
                         //da.Fill(ds);
                         //DataRow dr = ds.Tables[0].Rows[0];
                         //DailyStats(dr);
-                        Console.WriteLine(xmlData.InnerXml);
+                       // Console.WriteLine(xmlData.InnerXml);
                     con1.Close();
                 }
 
