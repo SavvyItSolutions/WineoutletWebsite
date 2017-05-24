@@ -252,7 +252,7 @@ namespace UpdatingWinesData
 
         }
 
-        private static XmlDocument ConvertListDataToXml(List<WineDetails> lwd)
+        public static XmlDocument ConvertListDataToXml(List<WineDetails> lwd)
         {
             XmlDocument xdoc = new XmlDocument();
             XmlElement rootNode = xdoc.CreateElement("Wine");
@@ -269,27 +269,6 @@ namespace UpdatingWinesData
                 childNode.SetAttribute("WineType", lwd[i].WineType);
                 rootNode.AppendChild(childNode);
             }
-            //foreach (lwd dr in dtData.Rows)
-            //{
-            //    XmlElement childNode = xdoc.CreateElement("WineData");
-            //    childNode.SetAttribute("Sku", dr["sku"].ToString());
-            //    childNode.SetAttribute("FirstName", dr["FirstName"].ToString());
-            //    childNode.SetAttribute("LastName", dr["LastName"].ToString());
-            //    childNode.SetAttribute("PhoneNumber", dr["PhoneNumber"].ToString());
-            //    childNode.SetAttribute("Phone2", dr["Phone2"].ToString());
-            //    childNode.SetAttribute("Email", dr["Email"].ToString());
-            //    childNode.SetAttribute("Address1", dr["Address1"].ToString());
-            //    childNode.SetAttribute("Address2", dr["Address2"].ToString());
-            //    childNode.SetAttribute("City", dr["City"].ToString());
-            //    childNode.SetAttribute("State", dr["State"].ToString());
-            //    childNode.SetAttribute("CustomerType", dr["CustomerType"].ToString());
-            //    childNode.SetAttribute("CustomerAdded", dr["CustomerAdded"].ToString());
-            //    childNode.SetAttribute("CardNumber", dr["CardNumber"].ToString());
-            //    childNode.SetAttribute("Notes1", dr["Notes1"].ToString());
-            //    childNode.SetAttribute("IsUpdated", DBNull.Value.ToString());
-            //    childNode.SetAttribute("LastUpdatedOn", DBNull.Value.ToString());
-            //    rootNode.AppendChild(childNode);
-            //}
             xdoc.AppendChild(rootNode);
 
             return xdoc;

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UpdatingWinesData
 {
-    class WineDetails
+    public class WineDetails
     {
         public string Sku { get; set; }
         public string WineName { get; set; }
