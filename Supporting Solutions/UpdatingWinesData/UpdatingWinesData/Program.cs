@@ -22,11 +22,13 @@ namespace UpdatingWinesData
             //string sku=Console.ReadLine();
             //ExtractData Ed = new ExtractData();
             //Ed.ReadHTML("http://www.wineoutlet.com/sku05093.html");
+            //For reading excel sheet
             Program p = new Program();
-            p.FilterList();
+            // p.FilterListEstage();
+            p.FilterListSku();
 
         }
-        public void FilterList()
+        public void FilterListEstage()
         {
             //string FileName = ConfigurationManager.AppSettings["FileLocation"];
             string FileName = @"C:\Users\SAVVYIT\Desktop\Estage.xlsx";
@@ -81,6 +83,33 @@ namespace UpdatingWinesData
                 command = null;
             }
             
+
+            Console.WriteLine("Done");
+        }
+        public void FilterListSku()
+        {
+            //string FileName = ConfigurationManager.AppSettings["FileLocation"];
+            string FileName = @"C:\Users\SAVVYIT\Desktop\wineoutlet\sku.xlsx";
+            Console.WriteLine("Reading Excel sheet");
+            string con = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + FileName + ";Extended Properties='Excel 12.0 xml;HDR=YES;'";
+            
+            using (OleDbConnection connection = new OleDbConnection(con))
+            {
+                connection.Open();
+                OleDbCommand command = new OleDbCommand("select * from [Sku$]", connection);
+                using (OleDbDataReader dr = command.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        string sku = dr[0].ToString();
+                        SKUExist(sku);
+                    }
+
+                }
+
+                command = null;
+            }
+
 
             Console.WriteLine("Done");
         }
@@ -187,7 +216,7 @@ namespace UpdatingWinesData
                 sku = "" + sku;
 
             string urlAddress = "http://www.wineoutlet.com/sku" + sku + ".html";
-
+            //string urlAddress = "http://www.wineoutlet.com/sku24910.html";
             return WorkingSKU(urlAddress);
         }
 
