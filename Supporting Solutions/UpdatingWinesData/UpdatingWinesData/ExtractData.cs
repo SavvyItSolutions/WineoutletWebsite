@@ -56,25 +56,34 @@ namespace UpdatingWinesData
             doc.LoadHtml(str);
             WineDetails _wdobj = new WineDetails();
             List<WineDetails> lstWine = new List<WineDetails>();
-            path = @"C:\Users\SAVVYIT\Desktop\wineoutlet\WorkingSku.txt";
+            path = @"C:\Users\SAVVYIT\Desktop\wineoutlet\WorkingSku.csv";
             if (str.Contains("Thank you for shopping at Wine Outlet, unfortunately we are unable to locate the product you are purchasing") == true)
             {
-                using (StreamWriter writer = new StreamWriter(path, true))
-                {
-                    writer.WriteLine(SKU + "---" + "Doesn't Exist" + "\r\n");
-                    writer.Close();
-                    Console.WriteLine(SKU + "---" + "Doesn't Exist" + "\r\n");
-                }
+                var csv = new StringBuilder();
+                string skuno = SKU.Replace("http://www.wineoutlet.com/", "");
+                skuno = skuno.Replace(".html", "");
+                skuno = skuno.Replace("sku", "");
+                var newLine = string.Format("{0},{1},{2}","Not Exist in Website", skuno,SKU);
+                csv.AppendLine(newLine);
+                File.AppendAllText(path, csv.ToString());
+                Console.WriteLine(skuno);
+                //using (StreamWriter writer = new StreamWriter(path, true))
+                //{
+
+                //    writer.WriteLine(SKU + "---" + "Doesn't Exist" + "\r\n");
+                //    writer.Close();
+                //    Console.WriteLine(SKU + "---" + "Doesn't Exist" + "\r\n");
+                //}
                 //Console.WriteLine(SKU + "Doesn't Exist");
             }
             else
             {
-                using (StreamWriter writer = new StreamWriter(path, true))
-                {
-                    writer.WriteLine(SKU + "---" + "Exists" + " ");
-                    Console.WriteLine(SKU + "---" + "Exists" + " ");
-                    writer.Close();
-                }
+                //using (StreamWriter writer = new StreamWriter(path, true))
+                //{
+                //    writer.WriteLine(SKU + "---" + "Exists" + " ");
+                //    Console.WriteLine(SKU + "---" + "Exists" + " ");
+                //    writer.Close();
+                //}
                 string skuid = "";
                 try
                 {
@@ -185,16 +194,16 @@ namespace UpdatingWinesData
                     }
                     _wdobj.WineName = nameURL;
                     _wdobj.Vintage = Vintag;
-                    SKU = SKU.Replace("http://www.wineoutlet.com/", "");
-                    SKU = SKU.Replace(".html", "");
-                    SKU = SKU.Replace("sku", "");
-                    _wdobj.Sku = SKU;
+                    string sku_no= SKU.Replace("http://www.wineoutlet.com/", "");
+                    sku_no = sku_no.Replace(".html", "");
+                    sku_no = sku_no.Replace("sku", "");
+                    _wdobj.Sku = sku_no;
                     lstWine.Add(_wdobj);
 
                     XmlDocument xmlData = ConvertListDataToXml(lstWine);
 
                     string constr = ConfigurationManager.ConnectionStrings["LocalCon"].ConnectionString;
-
+                    Console.WriteLine(sku_no);
                     using (SqlConnection con = new SqlConnection(constr))
                     {
                         //using (SqlCommand cmd = new SqlCommand("ImportWineDetails", con))//TO INSERT
@@ -206,13 +215,10 @@ namespace UpdatingWinesData
                             cmd.CommandTimeout = 1000;
                             con.Open();
                             int i=cmd.ExecuteNonQuery();
-                            //using (StreamWriter writer = new StreamWriter(path, true))
-                            //{
-                            //    writer.WriteLine(""+i);
-                            //    //Console.WriteLine(""+i);
-                            //    writer.Close();
-                            //}
-                            //Console.Write(i);
+                            var csv = new StringBuilder();
+                            var newLine = string.Format("{0},{1},{2},{3}", "Working", _wdobj.Sku, SKU,"Updated");
+                            csv.AppendLine(newLine);
+                            File.AppendAllText(path, csv.ToString());
                             con.Close();
                         }
 

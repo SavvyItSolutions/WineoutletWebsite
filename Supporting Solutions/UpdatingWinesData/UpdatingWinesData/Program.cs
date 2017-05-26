@@ -96,7 +96,7 @@ namespace UpdatingWinesData
             using (OleDbConnection connection = new OleDbConnection(con))
             {
                 connection.Open();
-                OleDbCommand command = new OleDbCommand("select * from [Sku$]", connection);
+                OleDbCommand command = new OleDbCommand("select * from [More$]", connection);
                 using (OleDbDataReader dr = command.ExecuteReader())
                 {
                     while (dr.Read())
