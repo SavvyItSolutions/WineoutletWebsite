@@ -41,9 +41,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\ItemDetails.cs" />
+    <Compile Include="Models\ItemName.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Response\BaseServiceResponse.cs" />
     <Compile Include="Response\ItemDetailsResponse.cs" />
+    <Compile Include="Response\NameResponse.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

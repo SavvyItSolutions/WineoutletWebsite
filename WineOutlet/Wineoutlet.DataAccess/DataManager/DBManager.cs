@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Wineoutlet.Models;
 using System.Data.Linq;
 
-namespace Wineoutlet.DataAccess
+namespace Wineoutlet.DataAccess 
 {
     public class DBManager : IDBManager
     {
@@ -24,7 +24,7 @@ namespace Wineoutlet.DataAccess
                 WoDBContext.GetItemDetails(sku);
                 return result.ToList();
             }
-            catch (Exception ex)
+            catch (Exception exe)
             {
                 return null;
             }
@@ -37,7 +37,7 @@ namespace Wineoutlet.DataAccess
                 WoDBContext.GetItemsByCountryId(Id);
                 return result.ToList();
             }
-            catch (Exception ex)
+            catch (Exception exe)
             {
                 return null;
             }
@@ -50,7 +50,7 @@ namespace Wineoutlet.DataAccess
                 WoDBContext.GetItemsByGrapeTypeId(Id);
                 return result.ToList();
             }
-            catch(Exception ex)
+            catch(Exception exe)
             {
                 return null;
             }
@@ -64,7 +64,7 @@ namespace Wineoutlet.DataAccess
                 WoDBContext.GetItemsByWineTypeId(Id);
                 return result.ToList();
             }
-            catch(Exception ex)
+            catch(Exception exe)
             {
                 return null;
             }
@@ -77,7 +77,7 @@ namespace Wineoutlet.DataAccess
                 WoDBContext.GetItemsByRegionId(Id);
                 return result.ToList();
             }
-            catch(Exception ex)
+            catch(Exception exe)
             {
                 return null;
             }
@@ -90,7 +90,20 @@ namespace Wineoutlet.DataAccess
                     WoDBContext.GetItemsBySubRegionId(Id);
                 return result.ToList();
             }
-            catch(Exception ex)
+            catch(Exception exe)
+            {
+                return null;
+            }
+        }
+        public IList<GetItemNamesResult> GetItemNames()
+        {
+            try
+            {
+                ISingleResult<GetItemNamesResult> result =
+                    WoDBContext.GetItemNames();
+                return result.ToList();
+            }
+            catch(Exception exe)
             {
                 return null;
             }

@@ -103,6 +103,13 @@ namespace Wineoutlet.DataAccess
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id);
 			return ((ISingleResult<GetItemsByWineTypeIdResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetItemNames")]
+		public ISingleResult<GetItemNamesResult> GetItemNames()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<GetItemNamesResult>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class GetItemDetailsResult
@@ -1012,6 +1019,32 @@ namespace Wineoutlet.DataAccess
 				if ((this._WineTypeName != value))
 				{
 					this._WineTypeName = value;
+				}
+			}
+		}
+	}
+	
+	public partial class GetItemNamesResult
+	{
+		
+		private string _Name;
+		
+		public GetItemNamesResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(MAX)")]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this._Name = value;
 				}
 			}
 		}

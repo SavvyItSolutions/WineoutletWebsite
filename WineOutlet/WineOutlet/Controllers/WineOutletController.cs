@@ -12,8 +12,6 @@ namespace WineOutlet.Controllers
 {
     public class WineOutletController : ApiController
     {
-
-    
         [HttpGet]
         public string TestService()
         {
@@ -27,6 +25,7 @@ namespace WineOutlet.Controllers
             resp = itemService.GetItemDetails(objectId);
             return resp;
         }
+        [HttpGet]
         public ItemDetailsResponse GetItemListByCountry(int objectId)
         {
             ItemDetailsResponse resp = new ItemDetailsResponse();
@@ -34,6 +33,7 @@ namespace WineOutlet.Controllers
             resp = itemService.GetItemListByCountry(objectId);
             return resp;
         }
+        [HttpGet]
         public ItemDetailsResponse GetItemListByGrape(int objectId)
         {
             ItemDetailsResponse resp = new ItemDetailsResponse();
@@ -41,6 +41,7 @@ namespace WineOutlet.Controllers
             resp = itemService.GetItemListByGrape(objectId);
             return resp;
         }
+        [HttpGet]
         public ItemDetailsResponse GetItemListByWine(int objectId)
         {
             ItemDetailsResponse resp = new ItemDetailsResponse();
@@ -48,6 +49,7 @@ namespace WineOutlet.Controllers
             resp = itemService.GetItemListByWine(objectId);
             return resp;
         }
+        [HttpGet]
         public ItemDetailsResponse GetItemListByRegion(int objectId)
         {
             ItemDetailsResponse resp = new ItemDetailsResponse();
@@ -55,11 +57,20 @@ namespace WineOutlet.Controllers
             resp = itemService.GetItemListByRegion(objectId);
             return resp;
         }
+        [HttpGet]
         public ItemDetailsResponse GetItemListBySubRegion(int objectId)
         {
             ItemDetailsResponse resp = new ItemDetailsResponse();
             ItemService itemService = new ItemService();
             resp = itemService.GetItemListBySubRegion(objectId);
+            return resp;
+        }
+        [HttpGet]
+        public NameResponse GetNames()
+        {
+            NameResponse resp = new NameResponse();
+            ItemService itemService = new ItemService();
+            resp = itemService.GetItemNames();
             return resp;
         }
     }

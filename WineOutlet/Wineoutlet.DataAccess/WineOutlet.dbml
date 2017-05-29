@@ -78,4 +78,9 @@
       <Column Name="WineTypeName" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.GetItemNames" Method="GetItemNames">
+    <ElementType Name="GetItemNamesResult">
+      <Column Name="Name" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

@@ -15,5 +15,6 @@ namespace Wineoutlet.DataAccess
         IList<GetItemsByWineTypeIdResult> GetItemListByWine(int Id);
         IList<GetItemsByRegionIdResult> GetItemListByRegion(int Id);
         IList<GetItemsBySubRegionIdResult> GetItemListBySubRegion(int Id);
+        IList<GetItemNamesResult> GetItemNames();
     }
 }

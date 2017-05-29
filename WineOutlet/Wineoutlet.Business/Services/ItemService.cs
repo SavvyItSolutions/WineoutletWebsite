@@ -154,5 +154,18 @@ namespace Wineoutlet.Business
             //idr.itemDetails = itemList;
             return idr;
         }
+        public NameResponse GetItemNames()
+        {
+            NameResponse nmr = new NameResponse();
+            List<ItemName> im = new List<ItemName>();
+            IDBManager idbm = new DBManager();
+            IList<GetItemNamesResult> respresult = idbm.GetItemNames().ToList();
+            foreach(GetItemNamesResult result in respresult)
+            {
+                im.Add(new ItemName { Name=result.Name });
+            }
+            nmr.Itemname = im;
+            return nmr;
+        }
     }
 }

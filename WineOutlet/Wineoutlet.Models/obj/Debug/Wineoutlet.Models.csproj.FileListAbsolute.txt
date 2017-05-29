@@ -2,4 +2,3 @@ E:\Github\WineoutletWebsite\WineOutlet\Wineoutlet.Models\bin\Debug\Wineoutlet.Mo
 E:\Github\WineoutletWebsite\WineOutlet\Wineoutlet.Models\bin\Debug\Wineoutlet.Models.pdb
 E:\Github\WineoutletWebsite\WineOutlet\Wineoutlet.Models\obj\Debug\Wineoutlet.Models.dll
 E:\Github\WineoutletWebsite\WineOutlet\Wineoutlet.Models\obj\Debug\Wineoutlet.Models.pdb
-E:\Github\WineoutletWebsite\WineOutlet\Wineoutlet.Models\obj\Debug\Wineoutlet.Models.csprojResolveAssemblyReference.cache

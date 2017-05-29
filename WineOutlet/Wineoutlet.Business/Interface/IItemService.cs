@@ -15,5 +15,6 @@ namespace Wineoutlet.Business
         ItemDetailsResponse GetItemListByWine(int Id);
         ItemDetailsResponse GetItemListByRegion(int Id);
         ItemDetailsResponse GetItemListBySubRegion(int Id);
+        NameResponse GetItemNames();
     }
 }

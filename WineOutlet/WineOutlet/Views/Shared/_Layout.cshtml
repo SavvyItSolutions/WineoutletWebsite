@@ -8,6 +8,9 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/bundles/jquery")
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery-ui.min.js"></script>
     @Scripts.Render("~/bundles/modernizr")
     <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
 
@@ -15,7 +18,7 @@
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:700,400' rel='stylesheet' type='text/css' />
     <link href='https://fonts.googleapis.com/css?family=Cabin:400,700' rel='stylesheet' type='text/css' />
     <link href='https://fonts.googleapis.com/css?family=Yesteryear' rel='stylesheet' type='text/css' />
-
+    
     <!-- all css here -->
     <!-- master CSS
     ============================================ -->
@@ -209,7 +212,36 @@ a.socialIcon:hover, .socialHoverClass {
 
 
 	</style>
+   
+  
+    <script>
+        $(document).ready(function () {
+            $.ajax({
 
+                url: "http://localhost:61396/api/Wineoutlet/GetNames",
+                success: function (data) {
+                    var List = [];
+                    alert(data);
+                    for (i = 0; i < data.Itemname.length; i++) {
+                        List.push(data.Itemname[i].Name)
+                    }
+                    $("#Names").autocomplete({
+                        source: List,
+                    });
+                    //$('#myText').val(""); 
+                    //$('#searchHistory').text(""); 
+
+
+                    //$.each(List, function (index, value) {
+                    //    $('#searchHistory').append("<li class='historyItem'  onclick='addtotextbox(" + index + ")'>" +
+                    //        value + '</li>');
+                    //});
+
+                },
+                error: function (msg) { alert("error"); alert(msg); }
+            });
+        });
+    </script>
 </head>
 <body>
     <div class="home-page-1">
@@ -568,7 +600,7 @@ a.socialIcon:hover, .socialHoverClass {
                                     <!--search-box-start-->
                                     <div class="search-box floatleft">
                                         <form action="#">
-                                            <input type="text" placeholder="Enter keywords to search... " />
+                                            <input type="text" id="Names" placeholder="Enter keywords to search... " />
                                             <button><i class="fa fa-search"></i></button>
                                         </form>
                                     </div>
