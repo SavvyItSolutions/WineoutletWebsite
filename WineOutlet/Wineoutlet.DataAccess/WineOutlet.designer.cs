@@ -68,6 +68,41 @@ namespace Wineoutlet.DataAccess
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), sku);
 			return ((ISingleResult<GetItemDetailsResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetItemsByCountryId")]
+		public ISingleResult<GetItemsByCountryIdResult> GetItemsByCountryId([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Id", DbType="Int")] System.Nullable<int> id)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id);
+			return ((ISingleResult<GetItemsByCountryIdResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetItemsByGrapeTypeId")]
+		public ISingleResult<GetItemsByGrapeTypeIdResult> GetItemsByGrapeTypeId([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Id", DbType="Int")] System.Nullable<int> id)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id);
+			return ((ISingleResult<GetItemsByGrapeTypeIdResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetItemsByRegionId")]
+		public ISingleResult<GetItemsByRegionIdResult> GetItemsByRegionId([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Id", DbType="Int")] System.Nullable<int> id)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id);
+			return ((ISingleResult<GetItemsByRegionIdResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetItemsBySubRegionId")]
+		public ISingleResult<GetItemsBySubRegionIdResult> GetItemsBySubRegionId([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Id", DbType="Int")] System.Nullable<int> id)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id);
+			return ((ISingleResult<GetItemsBySubRegionIdResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetItemsByWineTypeId")]
+		public ISingleResult<GetItemsByWineTypeIdResult> GetItemsByWineTypeId([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Id", DbType="Int")] System.Nullable<int> id)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id);
+			return ((ISingleResult<GetItemsByWineTypeIdResult>)(result.ReturnValue));
+		}
 	}
 	
 	public partial class GetItemDetailsResult
@@ -90,6 +125,766 @@ namespace Wineoutlet.DataAccess
 		private string _WineTypeName;
 		
 		public GetItemDetailsResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Sku", DbType="Int NOT NULL")]
+		public int Sku
+		{
+			get
+			{
+				return this._Sku;
+			}
+			set
+			{
+				if ((this._Sku != value))
+				{
+					this._Sku = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(MAX)")]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this._Name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Vintage", DbType="Int")]
+		public System.Nullable<int> Vintage
+		{
+			get
+			{
+				return this._Vintage;
+			}
+			set
+			{
+				if ((this._Vintage != value))
+				{
+					this._Vintage = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CountryName", DbType="VarChar(128)")]
+		public string CountryName
+		{
+			get
+			{
+				return this._CountryName;
+			}
+			set
+			{
+				if ((this._CountryName != value))
+				{
+					this._CountryName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RegionName", DbType="VarChar(128)")]
+		public string RegionName
+		{
+			get
+			{
+				return this._RegionName;
+			}
+			set
+			{
+				if ((this._RegionName != value))
+				{
+					this._RegionName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SubRegionName", DbType="VarChar(128)")]
+		public string SubRegionName
+		{
+			get
+			{
+				return this._SubRegionName;
+			}
+			set
+			{
+				if ((this._SubRegionName != value))
+				{
+					this._SubRegionName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GrapeTypeName", DbType="VarChar(128)")]
+		public string GrapeTypeName
+		{
+			get
+			{
+				return this._GrapeTypeName;
+			}
+			set
+			{
+				if ((this._GrapeTypeName != value))
+				{
+					this._GrapeTypeName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WineTypeName", DbType="VarChar(128)")]
+		public string WineTypeName
+		{
+			get
+			{
+				return this._WineTypeName;
+			}
+			set
+			{
+				if ((this._WineTypeName != value))
+				{
+					this._WineTypeName = value;
+				}
+			}
+		}
+	}
+	
+	public partial class GetItemsByCountryIdResult
+	{
+		
+		private int _Sku;
+		
+		private string _Name;
+		
+		private System.Nullable<int> _Vintage;
+		
+		private string _CountryName;
+		
+		private string _RegionName;
+		
+		private string _SubRegionName;
+		
+		private string _GrapeTypeName;
+		
+		private string _WineTypeName;
+		
+		public GetItemsByCountryIdResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Sku", DbType="Int NOT NULL")]
+		public int Sku
+		{
+			get
+			{
+				return this._Sku;
+			}
+			set
+			{
+				if ((this._Sku != value))
+				{
+					this._Sku = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(MAX)")]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this._Name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Vintage", DbType="Int")]
+		public System.Nullable<int> Vintage
+		{
+			get
+			{
+				return this._Vintage;
+			}
+			set
+			{
+				if ((this._Vintage != value))
+				{
+					this._Vintage = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CountryName", DbType="VarChar(128)")]
+		public string CountryName
+		{
+			get
+			{
+				return this._CountryName;
+			}
+			set
+			{
+				if ((this._CountryName != value))
+				{
+					this._CountryName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RegionName", DbType="VarChar(128)")]
+		public string RegionName
+		{
+			get
+			{
+				return this._RegionName;
+			}
+			set
+			{
+				if ((this._RegionName != value))
+				{
+					this._RegionName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SubRegionName", DbType="VarChar(128)")]
+		public string SubRegionName
+		{
+			get
+			{
+				return this._SubRegionName;
+			}
+			set
+			{
+				if ((this._SubRegionName != value))
+				{
+					this._SubRegionName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GrapeTypeName", DbType="VarChar(128)")]
+		public string GrapeTypeName
+		{
+			get
+			{
+				return this._GrapeTypeName;
+			}
+			set
+			{
+				if ((this._GrapeTypeName != value))
+				{
+					this._GrapeTypeName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WineTypeName", DbType="VarChar(128)")]
+		public string WineTypeName
+		{
+			get
+			{
+				return this._WineTypeName;
+			}
+			set
+			{
+				if ((this._WineTypeName != value))
+				{
+					this._WineTypeName = value;
+				}
+			}
+		}
+	}
+	
+	public partial class GetItemsByGrapeTypeIdResult
+	{
+		
+		private int _Sku;
+		
+		private string _Name;
+		
+		private System.Nullable<int> _Vintage;
+		
+		private string _CountryName;
+		
+		private string _RegionName;
+		
+		private string _SubRegionName;
+		
+		private string _GrapeTypeName;
+		
+		private string _WineTypeName;
+		
+		public GetItemsByGrapeTypeIdResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Sku", DbType="Int NOT NULL")]
+		public int Sku
+		{
+			get
+			{
+				return this._Sku;
+			}
+			set
+			{
+				if ((this._Sku != value))
+				{
+					this._Sku = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(MAX)")]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this._Name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Vintage", DbType="Int")]
+		public System.Nullable<int> Vintage
+		{
+			get
+			{
+				return this._Vintage;
+			}
+			set
+			{
+				if ((this._Vintage != value))
+				{
+					this._Vintage = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CountryName", DbType="VarChar(128)")]
+		public string CountryName
+		{
+			get
+			{
+				return this._CountryName;
+			}
+			set
+			{
+				if ((this._CountryName != value))
+				{
+					this._CountryName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RegionName", DbType="VarChar(128)")]
+		public string RegionName
+		{
+			get
+			{
+				return this._RegionName;
+			}
+			set
+			{
+				if ((this._RegionName != value))
+				{
+					this._RegionName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SubRegionName", DbType="VarChar(128)")]
+		public string SubRegionName
+		{
+			get
+			{
+				return this._SubRegionName;
+			}
+			set
+			{
+				if ((this._SubRegionName != value))
+				{
+					this._SubRegionName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GrapeTypeName", DbType="VarChar(128)")]
+		public string GrapeTypeName
+		{
+			get
+			{
+				return this._GrapeTypeName;
+			}
+			set
+			{
+				if ((this._GrapeTypeName != value))
+				{
+					this._GrapeTypeName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WineTypeName", DbType="VarChar(128)")]
+		public string WineTypeName
+		{
+			get
+			{
+				return this._WineTypeName;
+			}
+			set
+			{
+				if ((this._WineTypeName != value))
+				{
+					this._WineTypeName = value;
+				}
+			}
+		}
+	}
+	
+	public partial class GetItemsByRegionIdResult
+	{
+		
+		private int _Sku;
+		
+		private string _Name;
+		
+		private System.Nullable<int> _Vintage;
+		
+		private string _CountryName;
+		
+		private string _RegionName;
+		
+		private string _SubRegionName;
+		
+		private string _GrapeTypeName;
+		
+		private string _WineTypeName;
+		
+		public GetItemsByRegionIdResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Sku", DbType="Int NOT NULL")]
+		public int Sku
+		{
+			get
+			{
+				return this._Sku;
+			}
+			set
+			{
+				if ((this._Sku != value))
+				{
+					this._Sku = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(MAX)")]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this._Name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Vintage", DbType="Int")]
+		public System.Nullable<int> Vintage
+		{
+			get
+			{
+				return this._Vintage;
+			}
+			set
+			{
+				if ((this._Vintage != value))
+				{
+					this._Vintage = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CountryName", DbType="VarChar(128)")]
+		public string CountryName
+		{
+			get
+			{
+				return this._CountryName;
+			}
+			set
+			{
+				if ((this._CountryName != value))
+				{
+					this._CountryName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RegionName", DbType="VarChar(128)")]
+		public string RegionName
+		{
+			get
+			{
+				return this._RegionName;
+			}
+			set
+			{
+				if ((this._RegionName != value))
+				{
+					this._RegionName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SubRegionName", DbType="VarChar(128)")]
+		public string SubRegionName
+		{
+			get
+			{
+				return this._SubRegionName;
+			}
+			set
+			{
+				if ((this._SubRegionName != value))
+				{
+					this._SubRegionName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GrapeTypeName", DbType="VarChar(128)")]
+		public string GrapeTypeName
+		{
+			get
+			{
+				return this._GrapeTypeName;
+			}
+			set
+			{
+				if ((this._GrapeTypeName != value))
+				{
+					this._GrapeTypeName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WineTypeName", DbType="VarChar(128)")]
+		public string WineTypeName
+		{
+			get
+			{
+				return this._WineTypeName;
+			}
+			set
+			{
+				if ((this._WineTypeName != value))
+				{
+					this._WineTypeName = value;
+				}
+			}
+		}
+	}
+	
+	public partial class GetItemsBySubRegionIdResult
+	{
+		
+		private int _Sku;
+		
+		private string _Name;
+		
+		private System.Nullable<int> _Vintage;
+		
+		private string _CountryName;
+		
+		private string _RegionName;
+		
+		private string _SubRegionName;
+		
+		private string _GrapeTypeName;
+		
+		private string _WineTypeName;
+		
+		public GetItemsBySubRegionIdResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Sku", DbType="Int NOT NULL")]
+		public int Sku
+		{
+			get
+			{
+				return this._Sku;
+			}
+			set
+			{
+				if ((this._Sku != value))
+				{
+					this._Sku = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(MAX)")]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this._Name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Vintage", DbType="Int")]
+		public System.Nullable<int> Vintage
+		{
+			get
+			{
+				return this._Vintage;
+			}
+			set
+			{
+				if ((this._Vintage != value))
+				{
+					this._Vintage = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CountryName", DbType="VarChar(128)")]
+		public string CountryName
+		{
+			get
+			{
+				return this._CountryName;
+			}
+			set
+			{
+				if ((this._CountryName != value))
+				{
+					this._CountryName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RegionName", DbType="VarChar(128)")]
+		public string RegionName
+		{
+			get
+			{
+				return this._RegionName;
+			}
+			set
+			{
+				if ((this._RegionName != value))
+				{
+					this._RegionName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SubRegionName", DbType="VarChar(128)")]
+		public string SubRegionName
+		{
+			get
+			{
+				return this._SubRegionName;
+			}
+			set
+			{
+				if ((this._SubRegionName != value))
+				{
+					this._SubRegionName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GrapeTypeName", DbType="VarChar(128)")]
+		public string GrapeTypeName
+		{
+			get
+			{
+				return this._GrapeTypeName;
+			}
+			set
+			{
+				if ((this._GrapeTypeName != value))
+				{
+					this._GrapeTypeName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WineTypeName", DbType="VarChar(128)")]
+		public string WineTypeName
+		{
+			get
+			{
+				return this._WineTypeName;
+			}
+			set
+			{
+				if ((this._WineTypeName != value))
+				{
+					this._WineTypeName = value;
+				}
+			}
+		}
+	}
+	
+	public partial class GetItemsByWineTypeIdResult
+	{
+		
+		private int _Sku;
+		
+		private string _Name;
+		
+		private System.Nullable<int> _Vintage;
+		
+		private string _CountryName;
+		
+		private string _RegionName;
+		
+		private string _SubRegionName;
+		
+		private string _GrapeTypeName;
+		
+		private string _WineTypeName;
+		
+		public GetItemsByWineTypeIdResult()
 		{
 		}
 		

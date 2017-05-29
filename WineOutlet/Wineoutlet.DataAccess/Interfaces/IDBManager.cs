@@ -9,6 +9,11 @@ namespace Wineoutlet.DataAccess
 {
     public interface IDBManager
     {
-        IList<GetItemDetailsResult> GetLists(int sku);
+        IList<GetItemDetailsResult> GetItemDetails(int sku);
+        IList<GetItemsByCountryIdResult> GetItemListByCountry(int Id);
+        IList<GetItemsByGrapeTypeIdResult> GetItemListByGrape(int Id);
+        IList<GetItemsByWineTypeIdResult> GetItemListByWine(int Id);
+        IList<GetItemsByRegionIdResult> GetItemListByRegion(int Id);
+        IList<GetItemsBySubRegionIdResult> GetItemListBySubRegion(int Id);
     }
 }
