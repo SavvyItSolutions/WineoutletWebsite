@@ -24,14 +24,14 @@ namespace UpdatingWinesData
             //Ed.ReadHTML("http://www.wineoutlet.com/sku05093.html");
             //For reading excel sheet
             Program p = new Program();
-            // p.FilterListEstage();
-            p.FilterListSku();
+             p.FilterListEstage();
+            //p.FilterListSku();
 
         }
         public void FilterListEstage()
         {
             //string FileName = ConfigurationManager.AppSettings["FileLocation"];
-            string FileName = @"C:\Users\SAVVYIT\Desktop\Estage.xlsx";
+            string FileName = @"C:\Users\SAVVYIT\Desktop\wineoutlet\Estage.xlsx";
             Console.WriteLine("Reading Excel sheet");
             string con = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + FileName + ";Extended Properties='Excel 12.0 xml;HDR=YES;'";
             ExtractData edo = new ExtractData();
@@ -58,7 +58,7 @@ namespace UpdatingWinesData
                         string subregion = dr[16].ToString();
                         string WineType = dr[7].ToString();
                         string grapetype = dr[19].ToString();
-                        
+                        string price = dr[28].ToString();
                         _wdo.Sku = sku;
                         _wdo.Country = country;
                         _wdo.GrapeType = grapetype;
@@ -67,6 +67,7 @@ namespace UpdatingWinesData
                         _wdo.WineName = Winename;
                         _wdo.WineType = WineType;
                         _wdo.Vintage = vintage;
+                        _wdo.Price = price;
                         lstwine = new List<WineDetails>();
                         lstwine.Add(_wdo);
                         //it is to insert into Sample wine
@@ -120,7 +121,7 @@ namespace UpdatingWinesData
             string constr = ConfigurationManager.ConnectionStrings["LocalCon"].ConnectionString;
             using (SqlConnection con1 = new SqlConnection(constr))
             {
-                using (SqlCommand cmd = new SqlCommand("ImportWineDetails", con1))
+                using (SqlCommand cmd = new SqlCommand("UpdateWineDetails", con1))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add("@xmlDoc", SqlDbType.NVarChar).Value = xmlData.InnerXml;
@@ -191,6 +192,7 @@ namespace UpdatingWinesData
                 childNode.SetAttribute("SubRegion", lwd[i].SubRegion);
                 childNode.SetAttribute("GrapeType", lwd[i].GrapeType);
                 childNode.SetAttribute("WineType", lwd[i].WineType);
+                childNode.SetAttribute("Price", lwd[i].Price);
                 rootNode.AppendChild(childNode);
             }
             xdoc.AppendChild(rootNode);

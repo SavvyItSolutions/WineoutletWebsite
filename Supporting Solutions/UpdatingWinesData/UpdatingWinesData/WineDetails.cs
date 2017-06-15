@@ -16,5 +16,6 @@ namespace UpdatingWinesData
         public string SubRegion { get; set; }
         public string GrapeType { get; set; }
         public string WineType { get; set; }
+        public string Price { get; set; }
     }
 }
